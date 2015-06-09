@@ -1,10 +1,35 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    {{{body}}}
-  </body>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>{{{title}}}</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        <link href="/stylesheets/style.css" rel="stylesheet" />
+        <link href="/stylesheets/bootstrap.css" rel="stylesheet" />
+        <link href="/stylesheets/bootstrap-theme.css" rel="stylesheet" />
+    </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <div ><span class="site-title2">CMI&nbsp;</span><span class="site-title">CompanyWeb</span></div>
+                </div>
+                <div class="float-right">
+                    <section id="login">
+                    </section>
+                </div>
+            </div>
+        </header>
+        <div id="" class="page">
+            {{{body}}}
+        </div>
+        <footer>
+            <div class="float-left">
+                <p>CMI &copy; Company Intranet</p>
+            </div>
+        </footer>
+        <script src="/javascripts/jquery-1.9.1.js"></script>
+        <script src="/javascripts/bootstrap.js"></script>
+    </body>
 </html>
