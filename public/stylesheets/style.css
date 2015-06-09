@@ -774,3 +774,13 @@ tr.pager td {
 {
    font-size: 20px;
 }
+.dropdown-menu
+{
+    left: -110px !important;    
+}
+#open
+{
+    margin-top: 5px;
+    position: relative;
+    left: 100px;
+}
