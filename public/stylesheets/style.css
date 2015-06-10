@@ -100,8 +100,8 @@ h5, h6 {
 
 #body {
     background-color: #efeeef;
-    border: solid 1px red;
     clear: both;
+    padding-top: 10px;
     padding-bottom: 35px;
 }
 
@@ -783,4 +783,51 @@ tr.pager td {
     margin-top: 5px;
     position: relative;
     left: 100px;
+}
+#edit-form
+{
+    height: 300px;
+    width: 900px;
+    background-color: white;
+    color: black;
+    position: relative;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#edit-form-backdrop
+{
+    display: none;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background-color: RGBA(66,66,66,0.3);
+}
+.edit-form-delete:hover
+{
+    background-color: red;
+    color: darkred;
+}
+#add-form-backdrop
+{
+    display: none;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background-color: RGBA(66,66,66,0.3);
+}
+#add-form
+{
+    height: 300px;
+    width: 600px;
+    background-color: white;
+    color: black;
+    position: relative;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
 }

@@ -1,12 +1,82 @@
 <div class="container-fluid" id="body">
         {{panelDisplay panels}}
 </div>
+    <div id="edit-form-backdrop">
+        <div id="edit-form" class="panel panel-success">
+            <div class="panel-heading">
+                Edit Panel
+            </div>
+            <div class="panel-body panel">
+                <form>
+                    <div class="form-group">
+                      <label for="name">Title:</label>
+                      <input type="text" id="name" data-bind="value: title" /> 
+                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                            <td>Text</td>
+                            <td>URL</td>
+                            <td>&nbsp;</td>
+                        </thead>
+                        <tbody id="link-table" data-bind="foreach: links">
+                            <tr>
+                                <td><input type="text" data-bind="value: text" /></td>
+                                <td><input type="text" data-bind="value: href" /></td>
+                                <td class="edit-form-delete"><span class="glyphicon glyphicon-trash"><div style="display:none" data-bind="text: text + href"></div></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button id="edit-form-submit" class="btn btn-info" type="submit">Submit</button>
+                    <button id="edit-form-cancel" class="btn btn-default">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="add-form-backdrop">
+        <div id="add-form" class="panel panel-success">
+            <div class="panel-heading">
+                Add Link
+            </div>
+            <div class="panel-body panel">
+                <form>
+                    <div class="form-group">
+                      <label for="text">Text:</label>
+                      <input type="text" id="text" /> 
+                    </div>
+                    <div class="form-group">
+                      <label for="url">URL:</label>
+                      <input type="text" id="url" /> 
+                    </div>
+                    <button id="add-form-submit" class="btn btn-info" type="submit">Submit</button>
+                    <button id="add-form-cancel" class="btn btn-default">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
 <script>
+    var vm;
     $(document).ready(function(){
         $("#open").click(function(){
             $.post('/panel/add', function(){
                 location.href = '/';
             });
+        });
+        $("#edit-form-submit").click(function(){
+            $.post('/panel/edit', {id: vm.id, name: vm.title, links:JSON.stringify(vm.links())}, function(){
+                location.href = '/';
+            });
+        });
+         $("#edit-form-cancel").click(function(){
+             $('#edit-form-backdrop').hide();
+        });
+        $("#add-form-submit").click(function(){
+            vm.links().push({text: $('#text').val(), href: $('#url').val()});
+            $.post('/panel/edit', {id: vm.id, name: vm.title, links:JSON.stringify(vm.links())}, function(){
+                location.href = '/';
+            });
+        });
+         $("#add-form-cancel").click(function(){
+             $('#add-form-backdrop').hide();
         });
     });
     
@@ -21,5 +91,41 @@
         location.href = '/';
       });
     };
+    
+    function editPanel(id){
+        vm = buildViewModel(id);
+        ko.applyBindings(vm);
+        $('.edit-form-delete').click(function(){
+            console.log(this);
+            var self = this;
+            vm.links.remove(function(item){
+               return item.text + item.href == $($(self).children()[0]).children()[0].innerText;
+           }); 
+            $.post('/panel/edit', {id: vm.id, name: vm.title, links:JSON.stringify(vm.links())}, function(){
+                location.href = '/';
+            });
+        });
+        $('#edit-form-backdrop').show();
+    }
+    
+    function addLink(id){
+        vm = buildViewModel(id);
+        $('#add-form-backdrop').show();
+    }
+    
+    function buildViewModel(id){
+        var output = {};
+        output.id = ko.observable(id);
+        output.title = ko.observable( $( '#' + id ).html() );
+        output.links = ko.observableArray();
+        $('#' + id + '-container .panel-link').each(function(i, item){
+            output.links.push({
+                    text: $(item)[0].innerText
+                    ,href: $($(item).children()[0]).attr('href')
+                });
+        });
+        return output;
+    }
+    
     
 </script>

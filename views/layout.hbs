@@ -7,21 +7,20 @@
         <meta name="viewport" content="width=device-width" />
         <link href="/stylesheets/style.css" rel="stylesheet" />
         <link href="/stylesheets/bootstrap.css" rel="stylesheet" />
-        <link href="/stylesheets/themes/base/jquery.ui.all.css" rel="stylesheet" />
+        <!--<link href="/stylesheets/themes/base/jquery.ui.all.css" rel="stylesheet" />-->
+        <link href="/stylesheets/jquery-ui.theme.css" rel="stylesheet" />
+        <link href="/stylesheets/jquery-ui.structure.css" rel="stylesheet" />
         <link href="/stylesheets/bootstrap-theme.css" rel="stylesheet" />
         <script src="/javascripts/jquery-1.9.1.js"></script>
         <script src="/javascripts/jquery-ui-1.8.24.js"></script>
+        <script src="/javascripts/knockout-2.2.0.js"></script>
     </head>
     <body>
         <header>
             <div class="float-left">
                 <div ><span class="site-title2">CMI&nbsp;</span><span class="site-title">CompanyWeb</span></div>
             </div>
-            <div><button id="open">Add Panel</button></div>
-            <div class="float-right">
-                <section id="login">
-                </section>
-            </div>
+            <div><button class="btn btn-default" id="open">Add Panel</button></div>
         </header>
         <div id="" class="page">
             {{{body}}}
@@ -31,15 +30,7 @@
                 <p>CMI &copy; Company Intranet</p>
             </div>
         </footer>
+        
         <script src="/javascripts/bootstrap.js"></script>
-        <script>
-            $(document).ready(
-                function(){
-                    $.post('http://jnewton:3000/panel/list', function(data){
-                        console.log(data);
-                    });
-                }
-            );
-        </script>
     </body>
 </html>

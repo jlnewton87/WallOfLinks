@@ -46,4 +46,15 @@ router.post('/panel/remove/', function(req, res, next) {
   });
 });
 
+/* POST to edit panel */
+router.post('/panel/edit/', function(req, res, next) {
+  model.panel.findOne({_id: req.body.id},function(err, panel){
+    panel.title = req.body.name;
+    panel.links = JSON.parse(req.body.links);
+    panel.save(function(){
+      res.send('done');
+    });
+  });
+});
+
 module.exports = router;
