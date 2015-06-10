@@ -13,12 +13,13 @@ module.exports = {
 		var index = 0;
 		var rowCount = 0;
 		var output = '';
-		object.forEach(function(element){
+		object.sort(function(a,b){return a.order - b.order;}).forEach(function(element){
 				if(index == 0){
 					output += '<div class="row" id="row-' + ++rowCount + '">';
 				}
 				output += '<div class="col-md-4" id="' + element._id + '-container">'
 				+'<div id="' + element._id + '" style="display:none">' + element.title + '</div>'
+				+'<div id="' + element._id + '-order" style="display:none">' + element.order + '</div>'
 				+'<div class="panel panel-info">'
 	    		+'<div class="panel-heading">'
            		+'<span>' + element.title
@@ -38,8 +39,8 @@ module.exports = {
 	            +'<div class="panel-body">'
 				+'<ul style="display: block">';
 	            if (typeof(element.links) !== 'undefined') {
-						element.links.forEach(function(link){
-						output += '<li class="panel-link"><a href="' + link.href +'" target="_blank">' + link.text +'</a></li>';
+						element.links.sort(function(a,b){return a.order - b.order;}).forEach(function(link){
+						output += '<li class="panel-link"><a href="' + link.href +'" class="' + link.order + '" target="_blank">' + link.text +'</a></li>';
 					});
 				}
 				output += '</ul>'

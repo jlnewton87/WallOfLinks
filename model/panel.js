@@ -5,9 +5,11 @@ var Schema = mongoose.Schema();
 module.exports = {
 	panel: mongoose.model('panel', {
 		title: String,
+		order: {type: Number, default: 1},
 		links: [{
 			href: String,
-			text: String
+			text: String,
+			order: {type: Number, default: 1}
 		}]
 	})
 }

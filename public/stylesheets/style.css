@@ -831,3 +831,28 @@ tr.pager td {
     margin-left: auto;
     margin-right: auto;
 }
+#warn
+{
+    height: 100px;
+    width: 600px;
+    background-color: white;
+    color: black;
+    position: relative;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#warn-backdrop
+{
+    display: none;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background-color: RGBA(66,66,66,0.3);
+}
+.order-input
+{
+    width: 45px;
+}

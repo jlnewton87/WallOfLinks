@@ -51,6 +51,7 @@ router.post('/panel/edit/', function(req, res, next) {
   model.panel.findOne({_id: req.body.id},function(err, panel){
     panel.title = req.body.name;
     panel.links = JSON.parse(req.body.links);
+    panel.order = req.body.order;
     panel.save(function(){
       res.send('done');
     });
