@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-mongoose.connect('mongodb://dude:27017/CompanyWeb');
+mongoose.connect('mongodb://localhost:27017/CompanyWeb');
 var Schema = mongoose.Schema();
 
 module.exports = {
